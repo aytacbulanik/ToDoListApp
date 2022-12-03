@@ -65,9 +65,11 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-BY-n3h">
                                 <rect key="frame" x="324" y="153" width="59" height="40"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6JL-PI-Ude"/>
                                 </constraints>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="ADD"/>
                                 <connections>
@@ -99,6 +101,7 @@
                     </view>
                     <connections>
                         <outlet property="addButtonOut" destination="x7c-BY-n3h" id="NOv-mm-iQr"/>
+                        <outlet property="navigationBar" destination="cZv-wI-iIi" id="DAm-c8-xkq"/>
                         <outlet property="tableView" destination="NGv-0K-kY6" id="bL9-DO-iDc"/>
                         <outlet property="taskField" destination="Iii-9l-xyU" id="7U2-or-aQy"/>
                         <outlet property="taskLabel" destination="Hsd-Uv-GLm" id="Xoh-GJ-W53"/>
