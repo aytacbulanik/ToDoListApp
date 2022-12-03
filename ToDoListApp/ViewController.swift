@@ -27,11 +27,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Deneme"
+        let rowCell = indexPath.row
+        cell.textLabel?.text = taskArray[rowCell]
         return cell
     }
     @IBAction func addButtonPressed(_ sender : UIButton) {
-       
+        guard let task = taskField.text else {return}
+        taskArray.append(task)
+        taskField.text = ""
+        tableView.reloadData()
     }
 
 }
