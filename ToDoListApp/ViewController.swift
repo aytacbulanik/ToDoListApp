@@ -33,10 +33,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let rowCell = indexPath.row
-        
-//        cell.textLabel?.text = taskArray[rowCell]
+       let cell = UITableViewCell()
+        var content = cell.defaultContentConfiguration()
+        content.text = taskArray[indexPath.row]
+        cell.contentConfiguration = content
         taskLabel.text = "\(taskCount)"
         
         return cell
