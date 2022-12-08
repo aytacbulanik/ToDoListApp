@@ -33,16 +33,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = UITableViewCell()
+        let cell = UITableViewCell()
         var content = cell.defaultContentConfiguration()
         content.text = taskArray[indexPath.row]
+        cell.layer.backgroundColor = UIColor.cyan.cgColor
         cell.contentConfiguration = content
         taskLabel.text = "\(taskCount)"
-        
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tıklandı")
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @IBAction func addButtonPressed(_ sender : UIButton) {
@@ -50,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if task.isEmpty {
             alertSend()
         }else {
-            taskArray.append(task)
+            taskArray.append(task.uppercased())
             taskField.text = ""
             taskCount += 1
             tableView.reloadData()
