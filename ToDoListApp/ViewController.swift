@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var tableView : UITableView!
     
     var taskCount : Int = 0
-    var taskArray : [String] = []
+    var taskArray : [TaskManager] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +34,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        let arrayRow = taskArray[indexPath.row]
         var content = cell.defaultContentConfiguration()
-        content.text = taskArray[indexPath.row]
+        content.text = arrayRow.taskName
+        content.secondaryText = dateFormatter(date: arrayRow.taskDate)
         cell.layer.backgroundColor = UIColor.cyan.cgColor
         cell.contentConfiguration = content
         taskLabel.text = "\(taskCount)"
@@ -56,7 +58,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if task.isEmpty {
             alertSend()
         }else {
-            taskArray.append(task.uppercased())
+            let newTask = TaskManager(taskName: task.uppercased(), taskDate: Date())
+            taskArray.append(newTask)
             taskField.text = ""
             taskCount += 1
             tableView.reloadData()
@@ -69,6 +72,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let okButton = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okButton)
         present(alert, animated: true)
+    }
+    func dateFormatter(date : Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        let stringDate = formatter.string(from: date)
+        return stringDate
     }
 
 }
