@@ -54,11 +54,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        /*if editingStyle == .delete {
             taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .right)
+         } else */
+        if editingStyle == .insert {
+            print("deneme")
         }
     }
+    
     
     @IBAction func addButtonPressed(_ sender : UIButton) {
         guard let task = taskField.text else {return}
