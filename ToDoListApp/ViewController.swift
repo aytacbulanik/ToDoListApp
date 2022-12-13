@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var navigationBar: UINavigationBar!
     @IBOutlet var taskLabel : UILabel!
     @IBOutlet var taskField : UITextField!
     @IBOutlet var addButtonOut : UIButton!
     @IBOutlet var tableView : UITableView!
-    
+    let uniqueId = UUID()
     var taskCount : Int = 0
     var taskArray : [TaskManager] = []
     
@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         addButtonOut.layer.cornerRadius = 8
         navigationBar.backgroundColor = UIColor.darkGray
         taskLabel.text = "\(taskCount)"
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "kaydet"), object: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,13 +55,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        /*if editingStyle == .delete {
+        if editingStyle == .delete {
             taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .right)
-         } else */
-        if editingStyle == .insert {
-            print("deneme")
-        }
+         }
     }
     
     
